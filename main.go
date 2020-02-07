@@ -10,10 +10,10 @@ type server struct {}
  func main() {
 	s := &server{}
 	http.Handle("/", s)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8093", nil))
 }
 func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
-	w.Write([]byte(`{"message": "hello world"}`))
+	w.Write([]byte(`{"message": "Hello, world, from Docker!"}`))
 }

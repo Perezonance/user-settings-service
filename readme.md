@@ -1,29 +1,32 @@
-# User Settings Management Sevrvice
+# Simple Dockerized REST API
 
-Basic REST API service used to create update and manage settings for a user base.
+Really basic REST API that has been dockerized
+
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Make sure you have Docker desktop installed so you can build the docker image and run it on your kernel.
 
-```bash
-pip install foobar
-```
 
 ## Usage
+        
+The first thing you need to ensure is that your http listener is listening on an empty/unused port and that you map the 
+docker container ports to align with this port.
 
-```python
-import foobar
-
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
+```
+docker run -p host-port:container-port
+e.g.
+docker run -p 8080:8093
 ```
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+The exact docker commands I use to build the image and launch the container were:
+```
+docker build -t my-go-api .
 
-Please make sure to update tests as appropriate.
+docker run --name api-ctnr -d -p 8080:8093 my-go-api
+```
+When building the docker image make sure you are in the directory of the project you want to build and don't forget the 
+'.' at the end.
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+I assigned the container API to listen to port 8093(for no particular reason other than for demonstration) mapped to
+the host machine's port 8080(default localhost).
